@@ -4,6 +4,58 @@ document
     prefix udate <http://example.com/udate/>
     prefix prov <http://www.w3.org/ns/prov/>
     
+    # Chiffon
+    prefix cfq: https://www.qualtrics.manchester.ac.uk/jfe/form/SV_bKHCfLhrQn6j8sm
+    prefix cfsr：https://livemanchesterac.sharepoint.com/:x:/r/sites/UOM-DATA71011-2024-25/Shared%20Documents/Chiffon%20team/Week1%20Survey/UDatE-Chiffon-5.%20Register%20a%20Pet_October%204,%202024_08.13.csv?d=w76a32bbbb3424ac28f9de6570f789655&csf=1&web=1&e=n69qA0
+    prefix cfm：https://livemanchesterac.sharepoint.com/:x:/r/sites/UOM-DATA71011-2024-25/Shared%20Documents/Chiffon%20team/Week2%20Metadata/UDATE_chiffon_PetRegistry_Final_Metadata.xlsx?d=we997acd71fbb485c8de2078f903da654&csf=1&web=1&e=xJja3C
+    # cfq = Chiffon questionnaire
+    # cfsr = Chiffon survey response
+    # cfm = Chiffon metadata schema
+    
+    # Cyan
+    prefix cyq: TBC
+    prefix cysr：TBC
+    prefix cym：https://livemanchesterac.sharepoint.com/:x:/r/sites/UOM-DATA71011-2024-25/Shared%20Documents/Cyan%20team/UDATE_CYAN_PUBLIC%20HEALT%20SERVICE_FINAL_METADATA.xlsx?d=w678b9209df09460eb6e4fad96e8249e7&csf=1&web=1&e=TfAqDa
+    
+    # Navy
+    prefix nvq: TBC
+    prefix nvsr：TBC
+    prefix nvm：https://livemanchesterac.sharepoint.com/:x:/r/sites/UOM-DATA71011-2024-25/Shared%20Documents/Navy%20team/UDATE_PULICHEALTHSURVEY_FINAL_METADATA.xlsx?d=w27382a3cae5e4dfa9190c5b3db00048d&csf=1&web=1&e=RQhZIS
+    
+    
+    # Chiffon team's entities：
+      entity(cfq:questionnaire, [
+          prov:type='prov:Entity'
+          schema:numberOfItems="8"]) 
+      entity(cfsr:survey_response, [
+          prov:type='schema:Dataset', 
+          schema:numberOfItems="31"])
+      entity(cfm:dataset, [prov:type = 'schema:Dataset' ])
+      entity(cfm:metadeta_schema, [prov:type='prov:Entity'])
+    
+      # Cyan team's entities：
+      entity(cyq:questionnaire, [
+          prov:type='prov:Entity'
+          schema:numberOfItems="8"]) 
+      entity(cysr:survey_response, [
+          prov:type='schema:Dataset', 
+          schema:numberOfItems="31"])
+      entity(cym:dataset, [prov:type = 'schema:Dataset' ])
+      entity(cym:metadeta_schema, [prov:type='prov:Entity'])
+    
+      # Navy team's entities：
+      entity(nvq:questionnaire, [
+          prov:type='prov:Entity'
+          schema:numberOfItems="8"]) 
+      entity(nvsr:survey_response, [
+          prov:type='schema:Dataset', 
+          schema:numberOfItems="31"])
+      entity(nvm:dataset, [prov:type = 'schema:Dataset' ])
+      entity(nvm:metadeta_schema, [prov:type='prov:Entity'])
+
+
+
+    
     agent(udate:chiffon, [ prov:type='prov:Organisation' ])
     agent(udate:navy)
     agent(udate:cyan)
