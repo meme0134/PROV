@@ -36,20 +36,20 @@ document
       # Cyan team's entities：
       entity(cyq:questionnaire, [
           prov:type='prov:Entity'
-          schema:numberOfItems="8"]) 
+          schema:numberOfItems="X"]) #TBC
       entity(cysr:survey_response, [
           prov:type='schema:Dataset', 
-          schema:numberOfItems="31"])
+          schema:numberOfItems="X"]) #TBC
       entity(cym:dataset, [prov:type = 'schema:Dataset' ])
       entity(cym:metadeta_schema, [prov:type='prov:Entity'])
     
       # Navy team's entities：
       entity(nvq:questionnaire, [
           prov:type='prov:Entity'
-          schema:numberOfItems="8"]) 
+          schema:numberOfItems="X"]) #TBC
       entity(nvsr:survey_response, [
           prov:type='schema:Dataset', 
-          schema:numberOfItems="31"])
+          schema:numberOfItems="X"]) #TBC
       entity(nvm:dataset, [prov:type = 'schema:Dataset' ])
       entity(nvm:metadeta_schema, [prov:type='prov:Entity'])
 
