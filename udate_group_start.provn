@@ -66,15 +66,64 @@ document
 
 
     
-    agent(udate:chiffon, [ prov:type='prov:Organisation' ])
-    agent(udate:navy)
-    agent(udate:cyan)
-    agent(udate:allGroups)
+    # agent(udate:chiffon, [ prov:type='prov:Organisation' ])
+    # agent(udate:navy)
+    # agent(udate:cyan)
+    # agent(udate:allGroups)
+
+    agent(udate:chiffon, [
+    prov:type='prov:Organisation',
+    prov:label="Chiffon Team"
+    ])
+
+    agent(udate:navy, [
+    prov:type='prov:Organisation',
+    prov:label="Navy Team"
+    ])
+
+    agent(udate:cyan, [
+    prov:type='prov:Organisation',
+    prov:label="Cyan Team"
+    ])
+
+    agent(udate:allGroups, [
+    prov:type='prov:Agent',     
+    prov:label="All Survey Respondents",
+    prov:description="Represents all respondents in the udate course survey, across all groups"
+    ])
 
     entity(s:dataset, [ prov:type='ex:surveyResponse', ex:label='udate:publicHealthSurvey' ])
     entity(ex:questionaire)
 
-    activity(ex:writing)
+    # activity(ex:writing)
+
+    # Chiffon team's activities
+    activity(udate:chiffonDesigning, [prov:type="prov:Activity"])
+    activity(udate:chiffonSurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-29",
+        prov:endedAtTime="2024-10-02"
+    ])
+    activity(udate:chiffonAggregating, [prov:type="prov:Activity"])
+
+    # Cyan team's activities
+    activity(udate:cyanDesigning, [prov:type="prov:Activity"])
+    activity(udate:cyanSurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-27",
+        prov:endedAtTime="2024-10-03"
+    ])
+    activity(udate:cyanAggregating, [prov:type="prov:Activity"])
+
+    # Navy team's activities
+    activity(udate:navyDesigning, [prov:type="prov:Activity"])
+    activity(udate:navySurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-27",
+        prov:endedAtTime="2024-10-04"
+    ])
+    activity(udate:navyAggregating, [prov:type="prov:Activity"])
+
 
     wasAssociatedWith(udate:cyan, ex:writing, -, [ prov:role="author" ])
     wasAssociatedWith(ex:questionaire, udate:allGroups, -, [ prov:role="respondents" ])
