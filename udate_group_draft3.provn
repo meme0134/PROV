@@ -1,0 +1,176 @@
+document 
+    prefix s <http://schema.org/>
+    prefix ex <http://example.com/survey/>
+    prefix udate <http://example.com/udate/>
+    prefix prov <http://www.w3.org/ns/prov/>
+    
+
+    //Chiffon's entities
+    entity(udate:chiffonQuestionnaire, [
+          prov:type='ex:questionaire',
+          s:numberOfItems="8",
+          prov:value="https://tinyurl.com/chiffonQuestionaire"]) 
+    entity(udate:chiffonSurveyResponse, [
+          prov:type='s:Dataset', 
+          s:numberOfItems="31",
+          prov:value="https://tinyurl.com/chiffonSurveyResponse"
+          ])
+    entity(udate:chiffonDataset, [prov:type = 's:Dataset' ])
+    entity(udate:chiffonMetadata, [
+            prov:type='prov:Entity',
+            prov:value="https://tinyurl.com/chiffonMetadata"
+      ])
+    entity(udate:chiffonHealthIndex, [
+            prov:type="prov:Entity",
+            ex:fileName="Health Index",
+            prov:generatedAtTime="2023-10-26T00:00:00",
+            prov:value="https://tinyurl.com/chiffonHealthIndex"
+            ])  
+        
+    
+    //Cyan's entities
+    entity(udate:cyanQuestionnaire, [
+          prov:type='ex:questionaire',
+          s:numberOfItems="X"]) 
+    entity(udate:cyanSurveyResponse, [
+          prov:type='s:Dataset', 
+          s:numberOfItems="X"])
+    entity(udate:cyanDataset, [prov:type = 's:Dataset' ])
+    entity(udate:cyanMetadata, [
+            prov:type='prov:Entity',
+            prov:value="https://tinyurl.com/cyanMetadata"
+      ])
+
+          
+    // Navy's entities
+    entity(udate:navyQuestionnaire, [
+          prov:type='ex:questionaire',
+          s:numberOfItems="X"]) 
+    entity(udate:navySurveyResponse, [
+          prov:type='s:Dataset', 
+          s:numberOfItems="X"])
+    entity(udate:navyDataset, [prov:type = 's:Dataset' ])
+    entity(udate:navyMetadata, [
+            prov:type='prov:Entity',
+            prov:value="https://tinyurl.com/navyMetadata"
+      ])
+
+    // Agents
+    agent(udate:chiffon, [
+    prov:type='prov:Organisation',
+    prov:label="Chiffon Team"
+    ])
+
+    agent(udate:navy, [
+    prov:type='prov:Organisation',
+    prov:label="Navy Team"
+    ])
+
+    agent(udate:cyan, [
+    prov:type='prov:Organisation',
+    prov:label="Cyan Team"
+    ])
+
+    agent(udate:allGroups, [
+    prov:type='prov:Agent',     
+    prov:label="All Survey Respondents",
+    prov:description="Represents all respondents in the udate course survey, across all groups"
+    ])
+
+
+    // Chiffon team's activities
+    activity(udate:chiffonDesigning, [prov:type="prov:Activity"])
+    activity(udate:chiffonSurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-29",
+        prov:endedAtTime="2024-10-02"
+    ])
+    activity(udate:chiffonAggregating, [prov:type="prov:Activity"])
+    activity(udate:chiffonNormalisation, [prov:type="prov:Activity"])
+
+    // Cyan team's activities
+    activity(udate:cyanDesigning, [prov:type="prov:Activity"])
+    activity(udate:cyanSurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-27",
+        prov:endedAtTime="2024-10-03"
+    ])
+    activity(udate:cyanAggregating, [prov:type="prov:Activity"])
+
+    // Navy team's activities
+    activity(udate:navyDesigning, [prov:type="prov:Activity"])
+    activity(udate:navySurveying, [
+        prov:type="prov:Activity",
+        prov:startedAtTime="2024-09-27",
+        prov:endedAtTime="2024-10-04"
+    ])
+    activity(udate:navyAggregating, [prov:type="prov:Activity"])
+
+
+    // Chiffon's relations
+    wasDerivedFrom(udate:chiffonMetadata, udate:chiffonQuestionnaire)
+    wasDerivedFrom(udate:chiffonMetadata, udate:chiffonSurveyResponse)
+
+    wasAssociatedWith(udate:chiffonSurveying, udate:chiffon, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:chiffonAggregating, udate:chiffon, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:chiffonDesigning, udate:chiffon, -)
+    wasAssociatedWith(udate:chiffonSurveyResponse, udate:allGroups, -)
+
+    used(udate:chiffonSurveying, udate:chiffonQuestionnaire, -)
+    used(udate:chiffonAggregating, udate:chiffonSurveyResponse, -)
+
+    wasGeneratedBy(udate:chiffonQuestionnaire, udate:chiffonDesigning, 2024-09-27T00:00:00)
+    wasGeneratedBy(udate:chiffonSurveyResponse, udate:chiffonSurveying, -)
+    wasGeneratedBy(udate:chiffonDataset, udate:chiffonAggregating, 2024-10-04T00:00:00)
+
+    wasAttributedTo(udate:chiffonQuestionnaire, udate:chiffon)
+
+    // Creating health index
+    used(udate:chiffonNormalisation, udate:navyDataset, 2024-10-11T00:00:00)
+    used(udate:chiffonNormalisation, udate:cyanDataset, 2024-10-11T00:00:00)
+
+    wasGeneratedBy(udate:chiffonHealthIndex, udate:chiffonNormalisation, 2024-10-11T00:00:00)
+
+    wasAssociatedWith(udate:chiffonNormalisation, udate:chiffon, -)
+    wasAttributedTo(udate:chiffonHealthIndex, udate:chiffon)
+
+
+    // Navy's relations 
+    wasDerivedFrom(udate:navyMetadata, udate:navyQuestionnaire)
+    wasDerivedFrom(udate:navyMetadata, udate:navySurveyResponse)
+
+    wasAssociatedWith(udate:navySurveying, udate:navy, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:navyAggregating, udate:navy, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:navyDesigning, udate:navy, -)
+    wasAssociatedWith(udate:navySurveyResponse, udate:allGroups, -)
+
+    used(udate:navySurveying, udate:navyQuestionnaire, -)
+    used(udate:navyAggregating, udate:navySurveyResponse, -)
+
+    wasGeneratedBy(udate:navyQuestionnaire, udate:navyDesigning, 2024-09-27T00:00:00)
+    wasGeneratedBy(udate:navySurveyResponse, udate:navySurveying, -)
+    wasGeneratedBy(udate:navyDataset, udate:navyAggregating, -)
+
+    wasAttributedTo(udate:navyQuestionnaire, udate:navy)
+
+
+    // Cyan's relations
+    wasDerivedFrom(udate:cyanMetadata, udate:cyanQuestionnaire)
+    wasDerivedFrom(udate:cyanMetadata, udate:cyanSurveyResponse)
+
+    wasAssociatedWith(udate:cyanSurveying, udate:cyan, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:cyanAggregating, udate:cyan, -, [ex:label="Using Qualtrics"])
+    wasAssociatedWith(udate:cyanDesigning, udate:cyan, -)
+    wasAssociatedWith(udate:cyanSurveyResponse, udate:allGroups, -)
+
+    used(udate:cyanSurveying, udate:cyanQuestionnaire, -)
+    used(udate:cyanAggregating, udate:cyanSurveyResponse, -)
+
+    wasGeneratedBy(udate:cyanQuestionnaire, udate:cyanDesigning, 2024-09-27T00:00:00)
+    wasGeneratedBy(udate:cyanSurveyResponse, udate:cyanSurveying, -)
+    wasGeneratedBy(udate:cyanDataset, udate:cyanAggregating, 2024-10-04T00:00:00)
+
+    wasAttributedTo(udate:cyanQuestionnaire, udate:cyan)
+
+
+endDocument
