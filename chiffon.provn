@@ -1,0 +1,132 @@
+document 
+    prefix s <http://schema.org/>
+    prefix ex <http://example.com/survey/>
+    prefix udate <http://example.com/udate/>
+    prefix prov <http://www.w3.org/ns/prov/>
+    prefix file <https://tinyurl.com/>
+    
+
+    //Chiffon's entities
+    entity(udate:chiffonTask, [ex:label="Pet Registry"])
+    entity(file:chiffonQuestionnaire, [
+          prov:type='ex:questionnaire',
+          s:numberOfItems="8"]) 
+    entity(file:chiffonSurveyResponse, [
+          prov:type='s:Dataset', 
+          s:numberOfItems="31"
+          ])
+    entity(file:chiffonDataset, [prov:type = 's:Dataset'])
+    entity(file:chiffonMetadata, [
+            prov:type='prov:Entity'
+      ])
+    entity(file:chiffonHealthIndex, [
+            prov:type="prov:Entity",
+            ex:fileName="Health Index",
+            prov:generatedAtTime="2023-10-26T00:00:00"
+            ])  
+        
+    
+    //Cyan's entities
+    entity(udate:cyanDataset, [prov:type = 's:Dataset' ])
+    entity(file:cyanMetadata, [
+            prov:type='prov:Entity'
+      ])
+          
+    // Navy's entities
+    entity(udate:navyDataset, [prov:type = 's:Dataset' ])
+    entity(file:navyMetadata, [
+            prov:type='prov:Entity'
+      ])
+
+    // Agents
+    agent(udate:chiffon, [
+    prov:type='prov:Organisation',
+    prov:label="Chiffon Team"
+    ])
+
+    agent(udate:navy, [
+    prov:type='prov:Organisation',
+    prov:label="Navy Team"
+    ])
+
+    agent(udate:cyan, [
+    prov:type='prov:Organisation',
+    prov:label="Cyan Team"
+    ])
+
+    agent(udate:allGroups, [
+    prov:type='prov:Agent',     
+    prov:label="All Survey Respondents",
+    prov:description="Represents all respondents in the udate course survey, across all groups"
+    ])
+
+    agent(udate:lecturers,[
+    prov:type='prov:Organisation',     
+    prov:label="UDATE Teaching Staff"
+    ])
+
+    agent(udate:qualtrics, [
+    prov:type='prov:Organisation',     
+    prov:label="Qualtrics Software Package" 
+    ])
+
+
+    // Chiffon team's activities
+    activity(udate:chiffonDesigning, -, -)
+    activity(udate:chiffonSurveying, [
+        prov:startedAtTime="2024-09-29",
+        prov:endedAtTime="2024-10-02"
+    ])
+    activity(udate:chiffonAggregating, -, -)
+    activity(udate:chiffonNormalisation, -, -)
+
+
+    // Chiffon's relations
+    wasDerivedFrom(file:chiffonMetadata, file:chiffonQuestionnaire)
+    wasDerivedFrom(file:chiffonMetadata, file:chiffonDataset)
+
+    wasAssociatedWith(udate:chiffonSurveying, udate:chiffon, -)
+    wasAssociatedWith(udate:chiffonAggregating, udate:chiffon, -)
+    wasAssociatedWith(udate:chiffonDesigning, udate:chiffon, -)
+    wasAssociatedWith(file:chiffonSurveyResponse, udate:allGroups, -)
+
+    used(udate:chiffonSurveying, file:chiffonQuestionnaire, -)
+    used(udate:chiffonAggregating, file:chiffonSurveyResponse, -)
+    used(udate:chiffonDesigning, udate:chiffonTask, -)
+
+    wasGeneratedBy(file:chiffonQuestionnaire, udate:chiffonDesigning, 2024-09-27T00:00:00)
+    wasGeneratedBy(file:chiffonSurveyResponse, udate:chiffonSurveying, -)
+    wasGeneratedBy(file:chiffonDataset, udate:chiffonAggregating, 2024-10-04T00:00:00)
+
+    wasAttributedTo(file:chiffonQuestionnaire, udate:chiffon)
+    wasAttributedTo(file:chiffonMetadata, udate:chiffon)
+
+    // Creating health index
+    used(udate:chiffonNormalisation, udate:navyDataset, 2024-10-11T00:00:00)
+    used(udate:chiffonNormalisation, udate:cyanDataset, 2024-10-11T00:00:00)
+
+    wasGeneratedBy(file:chiffonHealthIndex, udate:chiffonNormalisation, 2024-10-11T00:00:00)
+
+    wasAssociatedWith(udate:chiffonNormalisation, udate:chiffon, -) 
+    wasAttributedTo(file:chiffonHealthIndex, udate:chiffon)
+
+
+    // Navy's relations 
+    wasDerivedFrom(file:navyMetadata, udate:navyDataset)
+    wasAttributedTo(udate:navyDataset, udate:navy)
+    wasAttributedTo(file:navyMetadata, udate:navy)
+
+
+    // Cyan's relations
+    wasDerivedFrom(file:cyanMetadata, udate:cyanDataset)
+    wasAttributedTo(udate:cyanDataset, udate:cyan)
+    wasAttributedTo(file:cyanMetadata, udate:cyan)
+
+    // Other relations
+    wasAssociatedWith(udate:chiffonSurveying, udate:qualtrics, -)
+    wasAssociatedWith(udate:chiffonAggregating, udate:qualtrics, -)
+    wasAssociatedWith(udate:chiffonTask, udate:lecturers, -)
+
+
+
+endDocument
